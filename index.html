@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaryan's Market</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+</head>
+
+<body>
+    <!-- Login / Registration -->
+    <div class="log-reg-cont" id="logreg">
+        <canvas id="canvas-basic"></canvas>
+        <div class="container">
+            <input type="checkbox" id="flip">
+            <div class="cover">
+                <div class="front">
+                    <img src="./assets/login.jpg" alt="">
+                </div>
+                <div class="back">
+                    <img class="backImg" src="./assets/signup.jpg" alt="">
+                </div>
+            </div>
+            <div class="forms">
+                <div class="form-content">
+                    <div class="login-form">
+                        <div class="title">Login</div>
+                        <form>
+                            <div class="input-boxes">
+                                <div class="input-box">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="text" placeholder="Enter your email" id="lemail">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" placeholder="Enter your password" id="lpass">
+                                </div>
+                                <div class="button input-box">
+                                    <input type="submit" value="Login" onclick="onLogin()">
+                                </div>
+                                <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup
+                                        now</label></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-form">
+                        <div class="title">Signup</div>
+                        <form action="#">
+                            <div class="input-boxes">
+                                <div class="input-box">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" placeholder="Enter your name" id="rname">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="text" placeholder="Enter your email" id="remail">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" placeholder="Enter your password" id="rpass">
+                                </div>
+                                <div class="button input-box">
+                                    <input type="submit" value="Signup" onclick="onReg()">
+                                </div>
+                                <div class="text sign-up-text">Already have an account? <label for="flip">Login
+                                        now</label></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login / Registration fin -->
+
+    <!-- Main Market -->
+    <div class="body shrink" id="body">
+        <div class="market-cont">
+            <div class="left">
+                <h1>Market</h1>
+                <div class="nav"></div>
+                <div class="profile">
+                    <div class="left">
+                        <img src="" alt="">
+                    </div>
+                    <div class="right">
+                        <p>Hey Aaryan</p>
+                        <p>Sign out</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <!-- Main Market fin -->
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
