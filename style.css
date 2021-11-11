@@ -290,10 +290,199 @@ body {
     width: 100%;
     background: #419f7f;
     border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 20px 6px #00000075;
 }
 
-.body .market-cont .left {}
+.body .market-cont .left {
+    height: 84%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.body .market-cont .right {}
+.body .market-cont .left h1 {
+    text-align: center;
+}
+
+.body .market-cont .left .nav {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.body .market-cont .left .nav p {
+    font-size: 3vh;
+    cursor: pointer;
+}
+
+.body .market-cont .left .nav p i {
+    transition: .5s ease;
+}
+
+.body .market-cont .left .nav p:hover i {
+    color: aliceblue;
+}
+
+.body .market-cont .left .profile {
+    display: flex;
+    height: 10vh;
+    width: 90%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.body .market-cont .left .profile .left {
+    overflow: hidden;
+    border-radius: 50%;
+    width: 25%;
+}
+
+.body .market-cont .left .profile .left img {
+    height: 100%;
+}
+
+.body .market-cont .left .profile .right {
+    width: 60%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: none;
+}
+
+.body .market-cont .left .profile .right p {
+    font-size: 2.5vh;
+}
+
+.white {
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.body .market-cont .right {
+    height: 96%;
+    width: 78%;
+    border-radius: 50px;
+    background: white;
+    box-shadow: inset 0 0 17px 6px #0000009e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.body .market-cont .right .search {
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 1vh;
+}
+
+.body .market-cont .right .search i {
+    font-size: 3vh;
+}
+
+.body .market-cont .right .search input[type=text] {
+    height: 5vh;
+    width: 25vw;
+    padding: 0 1vh;
+    outline: none;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid #419f7f;
+    margin: 0 2vh;
+    font-size: 2vh;
+}
+
+.body .market-cont .right .search input[type=text]::placeholder {
+    font-size: 2vh;
+}
+
+.body .market-cont .right .item-cont {
+    height: 86%;
+    width: 92%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.body .market-cont .right .item-cont::-webkit-scrollbar {
+    background: transparent;
+}
+
+.body .market-cont .right .item-cont::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #66f2c2 20%, transparent);
+    border-radius: 13px;
+}
+
+.body .market-cont .right .item-cont .item {
+    background: #66f2c2;
+    width: 26%;
+    height: 45vh;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px 2px #00000047;
+    margin: 2vh;
+}
+
+.body .market-cont .right .item-cont .item .top {
+    background: white;
+    height: 13vh;
+    width: 12vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 17px;
+    box-shadow: inset 0 0 10px 3px #00000038;
+}
+
+.body .market-cont .right .item-cont .item .top img {
+    height: 10vh;
+}
+
+.body .market-cont .right .item-cont .item .bottom {
+    height: 27vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 14vw;
+}
+
+.body .market-cont .right .item-cont .item .bottom button {
+    width: 11vw;
+    height: 5vh;
+    border-radius: 11px;
+    border: none;
+    font-size: 2.5vh;
+    box-shadow: 0 0 6px 0px #0000007a;
+    background: #419f7f;
+    color: aliceblue;
+    transition: 1s ease;
+}
+
+.body .market-cont .right .item-cont .item .bottom button:active {
+    box-shadow: inset 0 0 6px 0px #0000007a;
+}
+
+.body .market-cont .right .item-cont .item .bottom input[type=number] {
+    width: 5vw;
+    height: 4vh;
+    text-align: center;
+    border-radius: 8px;
+}
 
 /* Main Market fin */

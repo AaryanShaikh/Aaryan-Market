@@ -13,7 +13,7 @@
 
 <body>
     <!-- Login / Registration -->
-    <div class="log-reg-cont" id="logreg">
+    <div class="log-reg-cont shrink" id="logreg">
         <canvas id="canvas-basic"></canvas>
         <div class="container">
             <input type="checkbox" id="flip">
@@ -29,7 +29,7 @@
                 <div class="form-content">
                     <div class="login-form">
                         <div class="title">Login</div>
-                        <form>
+                        <form id="login-form">
                             <div class="input-boxes">
                                 <div class="input-box">
                                     <i class="fas fa-envelope"></i>
@@ -40,7 +40,7 @@
                                     <input type="password" placeholder="Enter your password" id="lpass">
                                 </div>
                                 <div class="button input-box">
-                                    <input type="submit" value="Login" onclick="onLogin()">
+                                    <input type="submit" value="Login">
                                 </div>
                                 <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup
                                         now</label></div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="signup-form">
                         <div class="title">Signup</div>
-                        <form action="#">
+                        <form id="reg-form">
                             <div class="input-boxes">
                                 <div class="input-box">
                                     <i class="fas fa-user"></i>
@@ -64,7 +64,7 @@
                                     <input type="password" placeholder="Enter your password" id="rpass">
                                 </div>
                                 <div class="button input-box">
-                                    <input type="submit" value="Signup" onclick="onReg()">
+                                    <input type="submit" value="Signup">
                                 </div>
                                 <div class="text sign-up-text">Already have an account? <label for="flip">Login
                                         now</label></div>
@@ -78,22 +78,125 @@
     <!-- Login / Registration fin -->
 
     <!-- Main Market -->
-    <div class="body shrink" id="body">
+    <div class="body" id="body">
         <div class="market-cont">
             <div class="left">
                 <h1>Market</h1>
-                <div class="nav"></div>
+                <div class="nav">
+                    <p><i class="fas fa-dumpster"></i>&nbsp;&nbsp;All</p>
+                    <p><i class="fas fa-apple-alt"></i>&nbsp;&nbsp;Fruits</p>
+                    <p><i class="fas fa-carrot"></i>&nbsp;&nbsp;Vegetables</p>
+                    <p><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Cart</p>
+                </div>
                 <div class="profile">
                     <div class="left">
-                        <img src="" alt="">
+                        <img src="./assets/insta.png" alt="">
                     </div>
                     <div class="right">
-                        <p>Hey Aaryan</p>
-                        <p>Sign out</p>
+                        <p>Hey <script>
+                                document.write(localStorage.getItem("name"))
+                            </script>
+                        </p>
+                        <p class="white" onclick="signOut()">Sign out?</p>
                     </div>
                 </div>
             </div>
-            <div class="right"></div>
+            <div class="right">
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Try searching apple..." id="">
+                </div>
+                <div class="item-cont">
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="top">
+                            <img src="./assets/items/apple.png" alt="">
+                        </div>
+                        <div class="bottom">
+                            <h1>Apple</h1>
+                            <p>Rs.80</p>
+                            <input type="number" name="" id="">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Main Market fin -->

@@ -45,7 +45,25 @@ var granimInstance = new Granim({
     }
 });
 
-let onReg = () => {
+_("login-form").addEventListener('submit', (event) => {
+    event.preventDefault();
+    let email = _("lemail").value
+    let pass = _("lpass").value
+    if (email === "" || pass === "") {
+        toastr["warning"]("Please fill in all the fields!")
+    } else {
+        if (email === localStorage.getItem("email") && pass === localStorage.getItem("pass")) {
+            toastr["success"]("login Successfull!")
+            _("logreg").classList.add("shrink")
+            _("body").classList.remove("shrink")
+        } else {
+            toastr["error"]("Email or password is invalid!")
+        }
+    }
+});
+
+_("reg-form").addEventListener('submit', (event) => {
+    event.preventDefault();
     let name = _("rname").value
     let email = _("remail").value
     let pass = _("rpass").value
@@ -67,22 +85,11 @@ let onReg = () => {
             toastr["error"]("Email is Invalid!")
         }
     }
-}
+})
 
-let onLogin = () => {
-    let email = _("lemail").value
-    let pass = _("lpass").value
-    if (email === "" || pass === "") {
-        toastr["warning"]("Please fill in all the fields!")
-    } else {
-        if (email === localStorage.getItem("email") && pass === localStorage.getItem("pass")) {
-            toastr["success"]("login Successfull!")
-            _("logreg").classList.add("shrink")
-            _("body").classList.remove("shrink")
-        } else {
-            toastr["error"]("Email or password is invalid!")
-        }
-    }
+let signOut = () => {
+    _("logreg").classList.remove("shrink")
+    _("body").classList.add("shrink")
 }
 
 // fetch("https://raw.githubusercontent.com/AaryanShaikh/myportfolio/main/src/res/projects.json")
