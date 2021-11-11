@@ -1,3 +1,6 @@
+let itemsData = []
+let cart = []
+
 function _(id) {
     return document.getElementById(id)
 }
@@ -90,13 +93,168 @@ _("reg-form").addEventListener('submit', (event) => {
 let signOut = () => {
     _("logreg").classList.remove("shrink")
     _("body").classList.add("shrink")
+    toastr["info"]("Signed out successfully!")
 }
 
-// fetch("https://raw.githubusercontent.com/AaryanShaikh/myportfolio/main/src/res/projects.json")
-// .then(res=>res.json())
-// .then(data=>{
-//   console.log(data.length)
-// })
-// .catch(err=>{
-//   console.log(err)
-// })
+window.onload = () => {
+    _("load").classList.add("shrink")
+    axios.get("./assets/cart.json")
+        .then(res => {
+            itemsData = res.data
+            makeItems("all")
+        })
+}
+
+let remItems = (id) => {
+    const parent = _(id)
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+let makeItems = (type) => {
+    remItems("itemcont")
+    if (type === "all") {
+        itemsData.forEach(element => {
+            let item = document.createElement("div")
+            item.classList.add("item")
+            let top = document.createElement("div")
+            top.classList.add("top")
+            let img = document.createElement("img")
+            img.src = element.img
+            top.appendChild(img)
+            item.appendChild(top)
+            let bottom = document.createElement("div")
+            bottom.classList.add("bottom")
+            let h1 = document.createElement("h1")
+            h1.textContent = element.name
+            let p = document.createElement("p")
+            p.textContent = `Rs.${element.price}`
+            let num = document.createElement("input")
+            num.setAttribute("type", "number");
+            num.setAttribute("id", `quantity${element.id}`);
+            num.setAttribute("min", "1");
+            num.setAttribute("max", "99");
+            num.setAttribute("value", "1");
+            let button = document.createElement("button")
+            button.textContent = "Add to cart"
+            button.setAttribute("onclick", `addToCart(${element.id})`);
+            bottom.append(h1, p, num, button)
+            item.appendChild(bottom)
+            _("itemcont").appendChild(item)
+        });
+    } else {
+        itemsData.filter((item) => {
+            return item.type === type
+        }).forEach(element => {
+            let item = document.createElement("div")
+            item.classList.add("item")
+            let top = document.createElement("div")
+            top.classList.add("top")
+            let img = document.createElement("img")
+            img.src = element.img
+            top.appendChild(img)
+            item.appendChild(top)
+            let bottom = document.createElement("div")
+            bottom.classList.add("bottom")
+            let h1 = document.createElement("h1")
+            h1.textContent = element.name
+            let p = document.createElement("p")
+            p.textContent = `Rs.${element.price}`
+            let num = document.createElement("input")
+            num.setAttribute("id", `quantity${element.id}`);
+            num.setAttribute("type", "number");
+            num.setAttribute("min", "1");
+            num.setAttribute("max", "99");
+            num.setAttribute("value", "1");
+            let button = document.createElement("button")
+            button.textContent = "Add to cart"
+            button.setAttribute("onclick", `addToCart(${element.id})`);
+            bottom.append(h1, p, num, button)
+            item.appendChild(bottom)
+            _("itemcont").appendChild(item)
+        });
+    }
+}
+
+let searchItems = () => {
+    remItems("itemcont")
+    itemsData.filter((item) => {
+        return item.name.includes(_("search").value.toLowerCase())
+    }).forEach(element => {
+        let item = document.createElement("div")
+        item.classList.add("item")
+        let top = document.createElement("div")
+        top.classList.add("top")
+        let img = document.createElement("img")
+        img.src = element.img
+        top.appendChild(img)
+        item.appendChild(top)
+        let bottom = document.createElement("div")
+        bottom.classList.add("bottom")
+        let h1 = document.createElement("h1")
+        h1.textContent = element.name
+        let p = document.createElement("p")
+        p.textContent = `Rs.${element.price}`
+        let num = document.createElement("input")
+        num.setAttribute("id", `quantity${element.id}`);
+        num.setAttribute("type", "number");
+        num.setAttribute("min", "1");
+        num.setAttribute("max", "99");
+        num.setAttribute("value", "1");
+        let button = document.createElement("button")
+        button.textContent = "Add to cart"
+        button.setAttribute("onclick", `addToCart(${element.id})`);
+        bottom.append(h1, p, num, button)
+        item.appendChild(bottom)
+        _("itemcont").appendChild(item)
+    });
+}
+
+let closeCart = () => {
+    _("cart-cont").classList.add("shrink")
+}
+
+let openCart = () => {
+    _("cart-cont").classList.remove("shrink")
+}
+
+let addToCart = (id) => {
+    let itemId = itemsData.findIndex((i) => i.id === id)
+    let obj = {
+        img: itemsData[itemId].img,
+        name: itemsData[itemId].name,
+        price: itemsData[itemId].price,
+        quantity: _(`quantity${itemId+1}`).value
+    }
+    cart.push(obj)
+    addToCheckout()
+    updateTotal()
+    toastr["info"](`${itemsData[itemId].name} added to cart!`)
+}
+
+let addToCheckout = () => {
+    remItems("cartItemsList")
+    cart.forEach((element) => {
+        let selItem = document.createElement("div")
+        selItem.classList.add("selItem")
+        let img = document.createElement("img")
+        img.src = element.img
+        let name = document.createElement("p")
+        name.textContent = element.name
+        let price = document.createElement("p")
+        price.textContent = `Rs.${element.price}`
+        let quantity = document.createElement("p")
+        quantity.textContent = element.quantity
+        selItem.append(img, name, price, quantity)
+        _("cartItemsList").appendChild(selItem)
+    })
+}
+
+let updateTotal = () => {
+    let total = 0
+    cart.forEach((item) => {
+        total += item.quantity * item.price
+    })
+    _("totalCost").textContent = `Rs.${total}`
+}

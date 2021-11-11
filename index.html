@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    <!-- Loading -->
+    <div class="load" id="load">
+        <img src="./assets/load.gif" alt="">
+    </div>
+    <!-- Loading fin -->
+
     <!-- Login / Registration -->
     <div class="log-reg-cont shrink" id="logreg">
         <canvas id="canvas-basic"></canvas>
@@ -80,13 +86,30 @@
     <!-- Main Market -->
     <div class="body" id="body">
         <div class="market-cont">
+            <div class="cart-cont shrink" id="cart-cont">
+                <div class="cart">
+                    <h1>Cart</h1>
+                    <hr>
+                    <div class="cartItems-list" id="cartItemsList"></div>
+                    <hr>
+                    <div class="total">
+                        <h1>Total</h1>
+                        <h1 id="totalCost">Rs.0</h1>
+                    </div>
+                    <div class="btns">
+                        <button onclick="closeCart()">Cancel!</button>
+                        <button>Buy Now!!</button>
+                    </div>
+                </div>
+            </div>
             <div class="left">
                 <h1>Market</h1>
                 <div class="nav">
-                    <p><i class="fas fa-dumpster"></i>&nbsp;&nbsp;All</p>
-                    <p><i class="fas fa-apple-alt"></i>&nbsp;&nbsp;Fruits</p>
-                    <p><i class="fas fa-carrot"></i>&nbsp;&nbsp;Vegetables</p>
-                    <p><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Cart</p>
+                    <p onclick="makeItems('all')"><i class="fas fa-dumpster"></i>&nbsp;&nbsp;All</p>
+                    <p onclick="makeItems('fruit')"><i class="fas fa-apple-alt"></i>&nbsp;&nbsp;Fruits</p>
+                    <p onclick="makeItems('veg')"><i class="fas fa-carrot"></i>&nbsp;&nbsp;Vegetables</p>
+                    <p onclick="makeItems('snack')"><i class="fas fa-cookie-bite"></i>&nbsp;&nbsp;Snacks</p>
+                    <p onclick="openCart()"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Cart</p>
                 </div>
                 <div class="profile">
                     <div class="left">
@@ -104,104 +127,16 @@
             <div class="right">
                 <div class="search">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Try searching apple..." id="">
+                    <input type="text" placeholder="Try searching apple..." id="search" onchange="searchItems()">
                 </div>
-                <div class="item-cont">
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="top">
-                            <img src="./assets/items/apple.png" alt="">
-                        </div>
-                        <div class="bottom">
-                            <h1>Apple</h1>
-                            <p>Rs.80</p>
-                            <input type="number" name="" id="">
-                            <button>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
+                <div class="item-cont" id="itemcont"></div>
             </div>
         </div>
     </div>
     <!-- Main Market fin -->
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.min.js"></script>

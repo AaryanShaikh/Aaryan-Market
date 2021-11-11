@@ -1,0 +1,30 @@
+[
+    {
+        "id":1,
+        "name":"apple",
+        "price":40,
+        "img":"./assets/items/apple.png",
+        "type":"fruit"
+    },
+    {
+        "id":2,
+        "name":"mango",
+        "price":50,
+        "img":"./assets/items/mango.png",
+        "type":"fruit"
+    },
+    {
+        "id":3,
+        "name":"carrot",
+        "price":20,
+        "img":"./assets/items/carrot.png",
+        "type":"veg"
+    },
+    {
+        "id":4,
+        "name":"oreo",
+        "price":20,
+        "img":"./assets/items/oreo.png",
+        "type":"snack"
+    }
+]
