@@ -350,7 +350,7 @@ let modeToggle = () => {
         _("search").classList.remove("lightclr")
         _("mcart").classList.remove("darkbg")
         _("mcart").classList.remove("lightclr")
-        _("ldmode").classList.remove("darkbg")
+        _("ldmode").classList.add("darkbg")
     }
     toggle = !toggle
 }
