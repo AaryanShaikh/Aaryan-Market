@@ -1,5 +1,6 @@
 let itemsData = []
 let cart = []
+let toggle = true
 
 function _(id) {
     return document.getElementById(id)
@@ -20,7 +21,7 @@ toastr.options = {
     "debug": false,
     "newestOnTop": false,
     "progressBar": false,
-    "positionClass": "toast-bottom-center",
+    "positionClass": "toast-top-right",
     "preventDuplicates": false,
     "onclick": null,
     "showDuration": "300",
@@ -59,6 +60,7 @@ _("login-form").addEventListener('submit', (event) => {
             toastr["success"]("login Successfull!")
             _("logreg").classList.add("shrink")
             _("body").classList.remove("shrink")
+            setUserName()
         } else {
             toastr["error"]("Email or password is invalid!")
         }
@@ -81,6 +83,7 @@ _("reg-form").addEventListener('submit', (event) => {
                 toastr["success"]("Registered Successfully!")
                 _("logreg").classList.add("shrink")
                 _("body").classList.remove("shrink")
+                setUserName()
             } else {
                 toastr["error"]("Password should be 6-16 characters long & should have atleast 1 number & atleast 1 special character!")
             }
@@ -89,6 +92,10 @@ _("reg-form").addEventListener('submit', (event) => {
         }
     }
 })
+
+let setUserName = () => {
+    _("username").textContent = `Hey ${localStorage.getItem("name")}`
+}
 
 let signOut = () => {
     _("logreg").classList.remove("shrink")
@@ -222,6 +229,7 @@ let openCart = () => {
 let addToCart = (id) => {
     let itemId = itemsData.findIndex((i) => i.id === id)
     let obj = {
+        id: itemId,
         img: itemsData[itemId].img,
         name: itemsData[itemId].name,
         price: itemsData[itemId].price,
@@ -230,7 +238,11 @@ let addToCart = (id) => {
     cart.push(obj)
     addToCheckout()
     updateTotal()
-    toastr["info"](`${itemsData[itemId].name} added to cart!`)
+    toastr["info"](`${obj.quantity} ${captilizeFirstLetter(itemsData[itemId].name)}(s) added to cart!`)
+}
+
+let captilizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 let addToCheckout = () => {
@@ -238,17 +250,33 @@ let addToCheckout = () => {
     cart.forEach((element) => {
         let selItem = document.createElement("div")
         selItem.classList.add("selItem")
+        let x = document.createElement("p")
+        x.textContent = "X"
+        x.classList.add("x")
+        x.setAttribute("onclick", `remFromCheckout(${element.id})`)
         let img = document.createElement("img")
         img.src = element.img
         let name = document.createElement("p")
         name.textContent = element.name
         let price = document.createElement("p")
-        price.textContent = `Rs.${element.price}`
-        let quantity = document.createElement("p")
-        quantity.textContent = element.quantity
-        selItem.append(img, name, price, quantity)
+        price.textContent = `Rs.${element.price}x${element.quantity}`
+        let itemTotal = document.createElement("p")
+        itemTotal.textContent = element.quantity * element.price
+        selItem.append(x, img, name, price, itemTotal)
         _("cartItemsList").appendChild(selItem)
     })
+}
+
+let remFromCheckout = (id) => {
+    let remitem = cart.filter((item) => {
+        return item.id == id
+    })
+    toastr["info"](`${captilizeFirstLetter(remitem[0].name)} removed from cart!`)
+    cart = cart.filter((item) => {
+        return item.id != id
+    })
+    addToCheckout()
+    updateTotal()
 }
 
 let updateTotal = () => {
@@ -257,4 +285,72 @@ let updateTotal = () => {
         total += item.quantity * item.price
     })
     _("totalCost").textContent = `Rs.${total}`
+}
+
+let buyNow = () => {
+    if (cart.length === 0) {
+        toastr["warning"](`Cart is Empty!!`)
+    } else {
+        toastr["success"](`Order placed successfully!!`)
+        cart = []
+        addToCheckout()
+        updateTotal()
+    }
+}
+
+let modeToggle = () => {
+    if (toggle) {
+        toastr["info"](`Dark mode enabled!!`)
+        _("dmodeimg").classList.add("shrink")
+        _("lmodeimg").classList.remove("shrink")
+        _("lrcont").classList.add("darkbg")
+        _("lgforms").classList.add("darkbg")
+        _("ltitle").classList.add("lightclr")
+        _("rtitle").classList.add("lightclr")
+        _("lemail").classList.add("darkbg")
+        _("lemail").classList.add("lightclr")
+        _("lpass").classList.add("darkbg")
+        _("lpass").classList.add("lightclr")
+        _("ltext").classList.add("lightclr")
+        _("rname").classList.add("darkbg")
+        _("rname").classList.add("lightclr")
+        _("remail").classList.add("darkbg")
+        _("remail").classList.add("lightclr")
+        _("rpass").classList.add("darkbg")
+        _("rpass").classList.add("lightclr")
+        _("rtext").classList.add("lightclr")
+        _("body").classList.add("darkbg")
+        _("mright").classList.add("darkbg")
+        _("search").classList.add("lightclr")
+        _("mcart").classList.add("darkbg")
+        _("mcart").classList.add("lightclr")
+        _("ldmode").classList.remove("darkbg")
+    } else {
+        toastr["info"](`Light mode enabled!!`)
+        _("dmodeimg").classList.remove("shrink")
+        _("lmodeimg").classList.add("shrink")
+        _("lrcont").classList.remove("darkbg")
+        _("lgforms").classList.remove("darkbg")
+        _("ltitle").classList.remove("lightclr")
+        _("rtitle").classList.remove("lightclr")
+        _("lemail").classList.remove("darkbg")
+        _("lemail").classList.remove("lightclr")
+        _("lpass").classList.remove("darkbg")
+        _("lpass").classList.remove("lightclr")
+        _("ltext").classList.remove("lightclr")
+        _("rname").classList.remove("darkbg")
+        _("rname").classList.remove("lightclr")
+        _("remail").classList.remove("darkbg")
+        _("remail").classList.remove("lightclr")
+        _("rpass").classList.remove("darkbg")
+        _("rpass").classList.remove("lightclr")
+        _("rtext").classList.remove("lightclr")
+        _("body").classList.remove("darkbg")
+        _("mright").classList.remove("darkbg")
+        _("search").classList.remove("lightclr")
+        _("mcart").classList.remove("darkbg")
+        _("mcart").classList.remove("lightclr")
+        _("ldmode").classList.remove("darkbg")
+    }
+    toggle = !toggle
 }

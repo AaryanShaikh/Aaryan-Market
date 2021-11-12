@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -44,6 +46,7 @@ body {
     perspective: 2700px;
     backdrop-filter: blur(10px);
     border-radius: 10px;
+    transition: .5s ease;
 }
 
 .container .cover {
@@ -101,17 +104,6 @@ body {
     z-index: 10;
 }
 
-.container .cover .text {
-    position: absolute;
-    z-index: 130;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 .cover .text :is(.text-1, .text-2) {
     font-size: 26px;
     font-weight: 600;
@@ -128,6 +120,7 @@ body {
     height: 100%;
     width: 100%;
     background: #fff;
+    transition: .5s ease;
 }
 
 .container .form-content {
@@ -145,6 +138,7 @@ body {
     font-size: 24px;
     font-weight: 500;
     color: #333;
+    transition: .5s ease;
 }
 
 .forms .form-content .title:before {
@@ -555,6 +549,12 @@ body {
     text-transform: capitalize;
 }
 
+.body .market-cont .cart-cont .cart .cartItems-list .selItem p.x {
+    font-family: 'Patrick Hand', cursive;
+    cursor: pointer;
+    color: #1b8d65;
+}
+
 .body .market-cont .cart-cont .cart .total {
     display: flex;
     justify-content: space-around;
@@ -602,3 +602,34 @@ body {
 }
 
 /* Loading fin */
+
+/* Light/Dark mode */
+.mode {
+    position: fixed;
+    bottom: 7vh;
+    right: 10vh;
+    background: #fff;
+    border-radius: 50%;
+    height: 9vh;
+    width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 7px 2px #0000004d;
+    transition: 1s ease;
+}
+
+.mode img {
+    height: 6vh;
+    position: absolute;
+}
+
+.darkbg {
+    background: #333 !important;
+}
+
+.lightclr {
+    color: #fff !important;
+}
+
+/* Light/Dark mode fin */

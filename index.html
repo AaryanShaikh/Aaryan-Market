@@ -19,9 +19,9 @@
     <!-- Loading fin -->
 
     <!-- Login / Registration -->
-    <div class="log-reg-cont shrink" id="logreg">
+    <div class="log-reg-cont" id="logreg">
         <canvas id="canvas-basic"></canvas>
-        <div class="container">
+        <div class="container" id="lrcont">
             <input type="checkbox" id="flip">
             <div class="cover">
                 <div class="front">
@@ -31,10 +31,10 @@
                     <img class="backImg" src="./assets/signup.jpg" alt="">
                 </div>
             </div>
-            <div class="forms">
+            <div class="forms" id="lgforms">
                 <div class="form-content">
                     <div class="login-form">
-                        <div class="title">Login</div>
+                        <div class="title" id="ltitle">Login</div>
                         <form id="login-form">
                             <div class="input-boxes">
                                 <div class="input-box">
@@ -48,13 +48,13 @@
                                 <div class="button input-box">
                                     <input type="submit" value="Login">
                                 </div>
-                                <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup
+                                <div class="text sign-up-text" id="ltext">Don't have an account? <label for="flip">Sigup
                                         now</label></div>
                             </div>
                         </form>
                     </div>
                     <div class="signup-form">
-                        <div class="title">Signup</div>
+                        <div class="title" id="rtitle">Signup</div>
                         <form id="reg-form">
                             <div class="input-boxes">
                                 <div class="input-box">
@@ -72,7 +72,8 @@
                                 <div class="button input-box">
                                     <input type="submit" value="Signup">
                                 </div>
-                                <div class="text sign-up-text">Already have an account? <label for="flip">Login
+                                <div class="text sign-up-text" id="rtext">Already have an account? <label
+                                        for="flip">Login
                                         now</label></div>
                             </div>
                         </form>
@@ -84,10 +85,10 @@
     <!-- Login / Registration fin -->
 
     <!-- Main Market -->
-    <div class="body" id="body">
+    <div class="body shrink" id="body">
         <div class="market-cont">
             <div class="cart-cont shrink" id="cart-cont">
-                <div class="cart">
+                <div class="cart" id="mcart">
                     <h1>Cart</h1>
                     <hr>
                     <div class="cartItems-list" id="cartItemsList"></div>
@@ -98,7 +99,7 @@
                     </div>
                     <div class="btns">
                         <button onclick="closeCart()">Cancel!</button>
-                        <button>Buy Now!!</button>
+                        <button onclick="buyNow()">Buy Now!!</button>
                     </div>
                 </div>
             </div>
@@ -116,15 +117,12 @@
                         <img src="./assets/insta.png" alt="">
                     </div>
                     <div class="right">
-                        <p>Hey <script>
-                                document.write(localStorage.getItem("name"))
-                            </script>
-                        </p>
+                        <p id="username"></p>
                         <p class="white" onclick="signOut()">Sign out?</p>
                     </div>
                 </div>
             </div>
-            <div class="right">
+            <div class="right" id="mright">
                 <div class="search">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Try searching apple..." id="search" onchange="searchItems()">
@@ -134,6 +132,14 @@
         </div>
     </div>
     <!-- Main Market fin -->
+
+    <!-- Light/Dark mode -->
+    <div class="mode darkbg" onclick="modeToggle()" id="ldmode">
+        <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/star_2b50.png" id="dmodeimg">
+        <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/sun-behind-cloud_26c5.png" id="lmodeimg"
+            class="shrink">
+    </div>
+    <!-- Light/Dark mode fin -->
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
