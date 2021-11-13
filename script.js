@@ -105,7 +105,7 @@ let signOut = () => {
 
 window.onload = () => {
     _("load").classList.add("shrink")
-    axios.get("./assets/cart.json")
+    axios.get("https://raw.githubusercontent.com/AaryanShaikh/My-Stock/main/market/cart.json")
         .then(res => {
             itemsData = res.data
             makeItems("all")
